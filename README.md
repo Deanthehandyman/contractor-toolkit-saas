@@ -1,4 +1,8 @@
 
+- Mileage Tracker module
+- Field Notes module
+- Estimator module
+- Invoicer module
+- CRM module
 
-## Under Development
-- Job Timer module
+All core modules are now implemented for initial testing.
