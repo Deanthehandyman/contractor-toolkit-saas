@@ -1,0 +1,148 @@
+==========================================================
+           CONTRACTOR TOOLKIT - START HERE
+==========================================================
+
+You have 1 job: Copy and paste this code in your computer
+
+==========================================================
+STEP 1: OPEN YOUR COMPUTER TERMINAL
+==========================================================
+
+Windows:
+- Click Start
+- Type "cmd" or "command prompt"
+- Click it to open
+
+Mac:
+- Press Command + Space
+- Type "terminal"
+- Press Enter
+
+Linux:
+- Press Ctrl + Alt + T
+
+==========================================================
+STEP 2: COPY AND PASTE THIS (one line at a time)
+==========================================================
+
+Line 1 - PASTE THIS:
+git clone https://github.com/Deanthehandyman/contractor-toolkit-saas.git
+
+Then press ENTER
+Wait for it to finish (will say "done")
+
+
+Line 2 - PASTE THIS:
+cd contractor-toolkit-saas
+
+Then press ENTER
+
+
+Line 3 - PASTE THIS:
+npm install
+
+Then press ENTER
+Wait 5 minutes... (it will show lots of text, that's normal)
+
+
+Line 4 - PASTE THIS:
+npm start
+
+Then press ENTER
+Wait 30 seconds...
+
+==========================================================
+STEP 3: APP OPENS AUTOMATICALLY
+==========================================================
+
+Your web browser will open with the app.
+
+You should see:
+- Title: "Contractor Toolkit Dashboard"
+- 6 boxes: Timer, Mileage, Notes, Estimator, Invoicer, CRM
+
+IF NOT:
+- Go to your browser
+- Type this in address bar: http://localhost:3000
+- Press Enter
+
+==========================================================
+THAT'S IT! YOU'RE DONE SETTING UP
+==========================================================
+
+Now you can start using the app!
+
+==========================================================
+QUICK TOOL GUIDE (SUPER SIMPLE)
+==========================================================
+
+1. JOB TIMER
+   - Type job name
+   - Click Start
+   - Timer counts up
+   - Click Stop when done
+
+2. MILEAGE
+   - Start: (what your car says)
+   - End: (what your car says after driving)
+   - Click Log Trip
+   - Shows tax deduction $
+
+3. NOTES
+   - Title: What happened
+   - Content: Details
+   - Tags: urgent, follow-up, etc.
+   - Click Save
+
+4. ESTIMATE
+   - Type item name (Labor, Materials, etc.)
+   - Type qty and price
+   - Click Add Item for more
+   - See total at bottom
+
+5. INVOICE
+   - Type customer name
+   - Type their email/phone/address
+   - Items show from Estimate
+   - Click Print Invoice to save as PDF
+
+6. CRM
+   - Type customer info
+   - Click Add Client
+   - See list below
+   - Click Delete to remove
+
+==========================================================
+IF SOMETHING GOES WRONG
+==========================================================
+
+Problem: "npm: command not found"
+Fix: Install Node.js from https://nodejs.org
+     Then restart terminal and try again
+
+Problem: App won't open
+Fix: Go to http://localhost:3000 in your browser
+
+Problem: App looks broken
+Fix: Press F5 to refresh
+
+Problem: "Port 3000 already in use"
+Fix: Close other apps using it
+     Or type: npm start -- --port 3001
+
+==========================================================
+KEEP THIS FILE HANDY!
+==========================================================
+
+Every time you want to use the app:
+
+1. Open Terminal
+2. Type: cd contractor-toolkit-saas
+3. Type: npm start
+4. Go to http://localhost:3000
+
+Done!
+
+==========================================================
+DONE! START MAKING MONEY NOW!
+==========================================================
