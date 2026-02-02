@@ -1,93 +1,95 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import JobTimer from './components/JobTimer';
-import MileageTracker from './components/MileageTracker';
-import FieldNotes from './components/FieldNotes';
-import Estimator from './components/Estimator';
-import Invoicer from './components/Invoicer';
-import CRM from './components/CRM';
+import LeadViewer from './components/LeadViewer';
+import DailyLeadScheduler from './components/DailyLeadScheduler';
 
 function App() {
+  const [activeTab, setActiveTab] = useState('leads');
+  const [todayCount, setTodayCount] = useState(0);
+
+  useEffect(() => {
+    // Check for new leads daily
+    const lastCheck = localStorage.getItem('lastLeadCheck');
+    const today = new Date().toDateString();
+    
+    if (lastCheck !== today) {
+      // New day - reset counter
+      localStorage.setItem('lastLeadCheck', today);
+      setTodayCount(0);
+    } else {
+      const count = localStorage.getItem('todayLeadCount');
+      setTodayCount(count ? parseInt(count) : 0);
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Contractor Toolkit Dashboard</h1>
-        <p>Job timing, mileage, notes, estimating, invoicing, and CRM in one place.</p>
+      <header className="app-header">
+        <div className="header-content">
+          <h1>📍 Dean's New Leads</h1>
+          <p>Real-time handyman lead generation for Texas</p>
+          <div className="lead-counter">
+            <span className="counter-badge">{todayCount} New Leads Today</span>
+          </div>
+        </div>
       </header>
 
-      <main className="App-main container">
-        <div className="row">
-          <div className="col-md-4 mb-3">
-            <section className="card h-100">
-              <div className="card-header">
-                <h2 className="h5 mb-0">Job Timer</h2>
-              </div>
-              <div className="card-body">
-                <JobTimer />
-              </div>
-            </section>
-          </div>
+      <nav className="app-nav">
+        <button 
+          className={`nav-btn ${activeTab === 'leads' ? 'active' : ''}`}
+          onClick={() => setActiveTab('leads')}
+        >
+          📋 View Leads
+        </button>
+        <button 
+          className={`nav-btn ${activeTab === 'schedule' ? 'active' : ''}`}
+          onClick={() => setActiveTab('schedule')}
+        >
+          ⏰ Schedule
+        </button>
+        <button 
+          className={`nav-btn ${activeTab === 'settings' ? 'active' : ''}`}
+          onClick={() => setActiveTab('settings')}
+        >
+          ⚙️ Settings
+        </button>
+      </nav>
 
-          <div className="col-md-4 mb-3">
-            <section className="card h-100">
-              <div className="card-header">
-                <h2 className="h5 mb-0">Mileage Tracker</h2>
+      <main className="app-main">
+        {activeTab === 'leads' && <LeadViewer />}
+        {activeTab === 'schedule' && <DailyLeadScheduler onNewLeads={(count) => setTodayCount(todayCount + count)} />}
+        {activeTab === 'settings' && (
+          <div className="settings-panel">
+            <h2>Settings</h2>
+            <div className="setting-item">
+              <label>Daily Lead Check Time:</label>
+              <input type="time" defaultValue="09:00" />
+            </div>
+            <div className="setting-item">
+              <label>Target Regions:</label>
+              <div className="region-checkboxes">
+                <label><input type="checkbox" defaultChecked /> Ark-La-Tex</label>
+                <label><input type="checkbox" defaultChecked /> East Texas</label>
+                <label><input type="checkbox" /> North Texas</label>
+                <label><input type="checkbox" /> Central Texas</label>
               </div>
-              <div className="card-body">
-                <MileageTracker />
-              </div>
-            </section>
+            </div>
+            <div className="setting-item">
+              <label>Lead Quality Filter:</label>
+              <select>
+                <option>All Quality Levels</option>
+                <option>Hot Only</option>
+                <option>Hot & Warm</option>
+              </select>
+            </div>
+            <button className="save-settings-btn">Save Settings</button>
           </div>
-
-          <div className="col-md-4 mb-3">
-            <section className="card h-100">
-              <div className="card-header">
-                <h2 className="h5 mb-0">Field Notes</h2>
-              </div>
-              <div className="card-body">
-                <FieldNotes />
-              </div>
-            </section>
-          </div>
-        </div>
-
-        <div className="row mt-4">
-          <div className="col-md-6 mb-3">
-            <section className="card h-100">
-              <div className="card-header">
-                <h2 className="h5 mb-0">Estimator</h2>
-              </div>
-              <div className="card-body">
-                <Estimator />
-              </div>
-            </section>
-          </div>
-
-          <div className="col-md-6 mb-3">
-            <section className="card h-100">
-              <div className="card-header">
-                <h2 className="h5 mb-0">Invoicer</h2>
-              </div>
-              <div className="card-body">
-                <Invoicer />
-              </div>
-            </section>
-          </div>
-        </div>
-
-        <div className="row mt-4">
-          <div className="col-12">
-            <section className="card">
-              <div className="card-header">
-                <h2 className="h5 mb-0">CRM</h2>
-              </div>
-              <div className="card-body">
-                <CRM />
-              </div>
-            </section>
-          </div>
-        </div>
+        )}
       </main>
+
+      <footer className="app-footer">
+        <p>Dean's New Leads • Ark-La-Tex to All Texas Coverage • Updated Daily</p>
+      </footer>
     </div>
   );
 }
