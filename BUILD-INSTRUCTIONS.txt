@@ -1,0 +1,143 @@
+==============================================================================
+DEAN'S NEW LEADS - BUILD INSTRUCTIONS FOR STANDALONE DESKTOP APP
+==============================================================================
+
+CREATING EXECUTABLE INSTALLERS FOR WINDOWS, MAC, AND LINUX
+
+==============================================================================
+PREREQUISITES
+==============================================================================
+
+You will need to install:
+
+1. Node.js (from nodejs.org)
+   - This includes npm (package manager)
+   - Required for building
+
+2. Git (from git-scm.com)
+   - Required to clone this repository
+
+==============================================================================
+STEP 1: CLONE THE REPOSITORY
+==============================================================================
+
+git clone https://github.com/Deanthehandyman/contractor-toolkit-saas.git
+cd contractor-toolkit-saas
+
+==============================================================================
+STEP 2: INSTALL DEPENDENCIES
+==============================================================================
+
+npm install
+npm install electron --save-dev
+npm install electron-builder --save-dev
+npm install electron-is-dev --save
+
+==============================================================================
+STEP 3: BUILD FOR YOUR OPERATING SYSTEM
+==============================================================================
+
+FOR WINDOWS:
+  npm run electron-build-windows
+  This creates: DeanNewLeads-Setup.exe
+  Output location: dist/
+
+FOR MAC:
+  npm run electron-build-mac
+  This creates: DeanNewLeads.dmg
+  Output location: dist/
+
+FOR LINUX:
+  npm run electron-build-linux
+  This creates: DeanNewLeads.AppImage
+  Output location: dist/
+
+FOR ALL PLATFORMS:
+  npm run electron-build-all
+  This creates installers for Windows, Mac, and Linux
+
+==============================================================================
+STEP 4: DISTRIBUTE THE APPS
+==============================================================================
+
+1. Open the "dist" folder - your installers are there!
+
+2. For Windows:
+   - Share DeanNewLeads-Setup.exe
+   - Users double-click to install
+
+3. For Mac:
+   - Share DeanNewLeads.dmg
+   - Users drag app to Applications folder
+
+4. For Linux:
+   - Share DeanNewLeads.AppImage
+   - Users make executable and double-click
+
+5. Create a GitHub Release:
+   - Go to GitHub repo → Releases → Create new release
+   - Upload the .exe, .dmg, and .AppImage files
+   - Users can download directly from Releases page
+
+==============================================================================
+STEP 5: DEVELOPMENT MODE (TESTING)
+==============================================================================
+
+To test the Electron app during development:
+
+1. In one terminal, start the React dev server:
+   npm start
+   (This runs at http://localhost:3000)
+
+2. In another terminal, run the Electron app:
+   npm run electron
+   (The app window opens automatically)
+
+3. Make changes to code, and the app hot-reloads
+
+==============================================================================
+FILE STRUCTURE
+==============================================================================
+
+main.js                    - Electron main process
+package.json              - Project configuration with build scripts
+src/App.js               - React main app
+src/components/          - React components
+src/texasLeadDatabase.js - Lead data
+
+==============================================================================
+TROUBLESHOOTING BUILD ISSUES
+==============================================================================
+
+Issue: "Module not found" errors
+Fix:   Delete node_modules folder and run: npm install
+
+Issue: Build creates no output
+Fix:   Make sure dist/ folder doesn't exist, then run build again
+
+Issue: App won't start
+Fix:   Check that React build is complete (npm run build)
+         Then retry Electron build
+
+==============================================================================
+ONCE BUILT, USERS GET A SIMPLE EXPERIENCE:
+==============================================================================
+
+✅ Download DeanNewLeads-Setup.exe (Windows)
+✅ Double-click to install
+✅ App appears in Start Menu
+✅ Click to launch - NO terminal needed
+✅ App starts immediately
+✅ Daily leads generate automatically
+✅ View leads before contacting
+✅ No setup, no coding, no complexity
+
+==============================================================================
+QUESTIONS?
+==============================================================================
+
+See README.md for full documentation
+Check QUICK-START.md for user setup instructions
+Contact: support@deanshandymanservice.me
+
+==============================================================================
